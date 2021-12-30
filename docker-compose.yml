@@ -1,0 +1,13 @@
+version: "3.8"
+services:
+  api:
+    image: fjplaurr/users-api
+    build:
+      dockerfile: Dockerfile
+      context: ./
+    volumes:
+      - /app/node_modules
+      - /app/dist
+      - ./:/app      
+    ports:
+      - 3051:3051
