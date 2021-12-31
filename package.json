@@ -12,6 +12,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.2",
+    "express-rate-limit": "^6.0.3",
+    "helmet": "^4.6.0",
     "lowdb": "^3.0.0"
   },
   "type": "module",
