@@ -1,6 +1,5 @@
 import express from 'express'
 import { Low, JSONFile } from 'lowdb'
-import { nanoid } from 'nanoid'
 import { join, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -24,16 +23,15 @@ app.get('/users', async (req, res) => {
   res.send(users)
 })
 
-app.get('/users/:id', async (req, res) => {
-  const user = users.find((p) => p.id === req.params.id)
+app.get('/users/:name', async (req, res) => {
+  const user = users.find((p) => p.name.toUpperCase() === req.params.name.toUpperCase())
   res.send(user)
 })
 
 app.post('/users', async (req, res, next) => {
-  const newUser = { ...req.body, id: nanoid() }
-  users.push(newUser)
+  users.push(req.body)
   await db.write()
-  res.send(newUser)
+  res.send(req.body)
 })
 
 app.listen(3051, () => {
